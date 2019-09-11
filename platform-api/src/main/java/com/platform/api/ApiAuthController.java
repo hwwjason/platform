@@ -95,6 +95,14 @@ public class ApiAuthController extends ApiBaseAction {
         //
         UserInfo userInfo = fullUserInfo.getUserInfo();
 
+//        // test
+//        if(userInfo !=null){
+//            resultObj.put("token", "");
+//            resultObj.put("userInfo", userInfo);
+//            resultObj.put("userId", "");
+//            return toResponsSuccess(resultObj);
+//        }
+
         //获取openid
         String requestUrl = ApiUserUtils.getWebAccess(code);//通过自定义工具类组合出小程序需要的登录凭证 code
         logger.info("》》》组合token为：" + requestUrl);
