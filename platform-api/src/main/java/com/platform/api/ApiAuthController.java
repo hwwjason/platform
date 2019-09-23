@@ -109,11 +109,13 @@ public class ApiAuthController extends ApiBaseAction {
         JSONObject sessionData = CommonUtil.httpsRequest(requestUrl, "GET", null);
 
         if (null == sessionData || StringUtils.isNullOrEmpty(sessionData.getString("openid"))) {
+            logger.info(sessionData);
             return toResponsFail("登录失败");
         }
         //验证用户信息完整性
         String sha1 = CommonUtil.getSha1(fullUserInfo.getRawData() + sessionData.getString("session_key"));
         if (!fullUserInfo.getSignature().equals(sha1)) {
+            logger.info("登录失败"+sessionData.toJSONString());
             return toResponsFail("登录失败");
         }
         Date nowTime = new Date();
